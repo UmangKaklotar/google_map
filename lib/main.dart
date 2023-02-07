@@ -29,6 +29,11 @@ class PermissionApp extends StatefulWidget {
 }
 
 class _PermissionAppState extends State<PermissionApp> {
+  snackBar() async {
+    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text((await Permission.camera.status).toString()),
+    ));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,49 +49,73 @@ class _PermissionAppState extends State<PermissionApp> {
             CupertinoButton.filled(
               child: const Text("Camera Permission"),
               onPressed: () async {
-               await Permission.camera.request();
+               var status = await Permission.camera.request();
+               if(status.isGranted) {
+                 snackBar();
+               }
               },
             ),
             CupertinoButton.filled(
               child: const Text("Storage Permission"),
               onPressed: () async {
-               await Permission.storage.request();
+               var status = await Permission.storage.request();
+               if(status.isGranted) {
+                 snackBar();
+               }
               },
             ),
             CupertinoButton.filled(
               child: const Text("Location Permission"),
               onPressed: () async {
-                await Permission.location.request();
+                var status = await Permission.location.request();
+                if(status.isGranted) {
+                  snackBar();
+                }
               },
             ),
             CupertinoButton.filled(
               child: const Text("Photos Permission"),
               onPressed: () async {
-                await Permission.photos.request();
+                var status = await Permission.photos.request();
+                if(status.isGranted) {
+                  snackBar();
+                }
               },
             ),
             CupertinoButton.filled(
               child: const Text("Contacts Permission"),
               onPressed: () async {
-                await Permission.contacts.request();
+                var status = await Permission.contacts.request();
+                if(status.isGranted) {
+                  snackBar();
+                }
               },
             ),
             CupertinoButton.filled(
               child: const Text("SMS Permission"),
               onPressed: () async {
-                await Permission.sms.request();
+                var status = await Permission.sms.request();
+                if(status.isGranted) {
+                  snackBar();
+                }
               },
             ),
             CupertinoButton.filled(
               child: const Text("Phone Permission"),
               onPressed: () async {
-                await Permission.phone.request();
+                var status = await Permission.phone.request();
+                if(status.isGranted) {
+                  snackBar();
+                }
               },
             ),
             CupertinoButton.filled(
               child: const Text("Calendar Permission"),
               onPressed: () async {
-                await Permission.calendar.request();
+                var status = await Permission.calendar.request();
+                if(status.isGranted) {
+                  snackBar();
+                }
               },
             ),
             CupertinoButton.filled(
@@ -110,7 +139,8 @@ class _PermissionAppState extends State<PermissionApp> {
                 if(status[0]!.isGranted || status[1]!.isGranted || status[2]!.isGranted || status[3]!.isGranted || status[4]!.isGranted
                     || status[5]!.isGranted || status[6]!.isGranted || status[7]!.isGranted || status[8]!.isGranted || status[9]!.isGranted
                     || status[10]!.isGranted || status[11]!.isGranted || status[12]!.isGranted) {
-                  print("Multiple Permission is Succesfully Done.....");
+                  print("Multiple Permission is Successfully Done.....");
+                  snackBar();
                 }
               },
             ),
